@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "dev:ssr": "ng serve --ssr",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:startup-hub": "node dist/startup-hub/server/server.mjs"
+    "serve:ssr:startup-hub": "node dist/startup-hub/server/server.mjs",
+    "build:ssr": "ng build && npm run serve:ssr:startup-hub"
   },
   "private": true,
   "dependencies": {

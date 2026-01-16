@@ -1,0 +1,81 @@
+<div class="min-h-screen bg-[#0a0a0a] text-gray-100 p-6">
+  <!-- Top Bar -->
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-2xl font-bold tracking-tight">Workspace Dashboard</h1>
+    <div class="flex items-center gap-4">
+      <span class="text-sm text-gray-400">Admin</span>
+      <button
+        class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md text-sm transition"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Seats -->
+    <div class="bg-white/5 border border-white/10 rounded-xl p-6">
+      <h2 class="text-sm text-gray-400 mb-2">Total Seats</h2>
+      <p class="text-4xl font-bold">400</p>
+      <p class="text-xs text-gray-500 mt-2">Available for daily booking</p>
+
+      <button
+        routerLink="/seats"
+        class="mt-4 text-sm text-[#00ff88] hover:underline"
+      >
+        View Seats →
+      </button>
+    </div>
+
+    <!-- Training Rooms -->
+    <div class="bg-white/5 border border-white/10 rounded-xl p-6">
+      <h2 class="text-sm text-gray-400 mb-2">Training Rooms</h2>
+      <p class="text-4xl font-bold">2</p>
+      <p class="text-xs text-gray-500 mt-2">Hourly / slot based</p>
+
+      <button routerLink="/training-rooms" class="mt-4 text-sm text-[#00ff88] hover:underline">
+        View Rooms →
+      </button>
+    </div>
+
+    <!-- Cabins -->
+    <div class="bg-white/5 border border-white/10 rounded-xl p-6">
+      <h2 class="text-sm text-gray-400 mb-2">Cabins</h2>
+      <p class="text-4xl font-bold">6</p>
+      <p class="text-xs text-gray-500 mt-2">Private booking</p>
+
+      <button routerLink="/cabins" class="mt-4 text-sm text-[#00ff88] hover:underline">
+        View Cabins →
+      </button>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="mt-10">
+    <h2 class="text-lg font-semibold mb-4">Quick Actions</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <a
+        routerLink="/seats"
+        class="bg-[#00ff88] text-black rounded-lg p-4 font-semibold hover:bg-[#00e676] transition"
+      >
+        Book a Seat
+      </a>
+
+      <a
+        routerLink="/training-rooms"
+        class="bg-white/10 rounded-lg p-4 hover:bg-white/20 transition"
+      >
+        Book Training Room
+      </a>
+
+      <a
+        routerLink="/cabins"
+        class="bg-white/10 rounded-lg p-4 hover:bg-white/20 transition"
+      >
+        Book Cabin
+      </a>
+    </div>
+  </div>
+</div>

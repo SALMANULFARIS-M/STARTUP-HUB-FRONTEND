@@ -1,0 +1,60 @@
+<div class="min-h-screen bg-slate-950 text-slate-200 px-6 py-12">
+  <div class="max-w-xl mx-auto bg-slate-900 border border-slate-800 rounded-xl p-8">
+
+    <h1 class="text-xl font-semibold mb-6">Complete Payment</h1>
+
+    <!-- Amount -->
+    <div class="flex justify-between items-center mb-6">
+      <span class="text-sm text-slate-400">Amount Payable</span>
+      <span class="text-2xl font-bold text-emerald-400">
+        ₹{{ amount }}
+      </span>
+    </div>
+
+    <!-- METHODS -->
+    <div class="space-y-3">
+      <button
+        (click)="selectedMethod='upi'"
+        class="w-full px-4 py-3 rounded-lg border flex justify-between items-center"
+        [ngClass]="selectedMethod==='upi'
+          ? 'bg-emerald-400 text-black border-emerald-400'
+          : 'border-slate-700'"
+      >
+        UPI
+        <span class="text-xs">Google Pay / PhonePe</span>
+      </button>
+
+      <button
+        (click)="selectedMethod='card'"
+        class="w-full px-4 py-3 rounded-lg border flex justify-between items-center"
+        [ngClass]="selectedMethod==='card'
+          ? 'bg-emerald-400 text-black border-emerald-400'
+          : 'border-slate-700'"
+      >
+        Card
+        <span class="text-xs">Visa / Mastercard</span>
+      </button>
+
+      <button
+        (click)="selectedMethod='netbanking'"
+        class="w-full px-4 py-3 rounded-lg border flex justify-between items-center"
+        [ngClass]="selectedMethod==='netbanking'
+          ? 'bg-emerald-400 text-black border-emerald-400'
+          : 'border-slate-700'"
+      >
+        Net Banking
+        <span class="text-xs">All major banks</span>
+      </button>
+    </div>
+
+    <!-- PAY -->
+    <button
+      (click)="proceed()"
+      [disabled]="!selectedMethod"
+      class="mt-6 w-full py-3 bg-emerald-500 text-black font-bold rounded-lg hover:bg-emerald-400 transition disabled:opacity-40"
+    >
+      Pay ₹{{ amount }}
+    </button>
+
+  </div>
+</div>

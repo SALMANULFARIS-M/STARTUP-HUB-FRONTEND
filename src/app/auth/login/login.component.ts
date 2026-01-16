@@ -40,7 +40,6 @@ export class LoginComponent {
 
     this.loading = true;
     this.error = null;
-
     this.authService.login(this.loginForm.value as any).subscribe({
       next: (res: any) => {
         this.tokenService.save(res.token);

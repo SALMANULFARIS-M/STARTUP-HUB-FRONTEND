@@ -1,0 +1,73 @@
+<div class="min-h-screen bg-slate-950 text-slate-200 px-6 py-10">
+  <div
+    class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-10"
+  >
+    <!-- CABINS -->
+    <div>
+      <h1 class="text-xl font-semibold mb-6">Private Cabins</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div
+          *ngFor="let cabin of cabins"
+          (click)="selectCabin(cabin)"
+          class="rounded-xl overflow-hidden cursor-pointer border transition"
+          [ngClass]="{
+            'border-emerald-400': selectedCabin?.id === cabin.id,
+            'border-slate-800 hover:border-slate-600':
+              selectedCabin?.id !== cabin.id
+          }"
+        >
+          <img [src]="cabin.image" class="h-40 w-full object-cover" />
+          <div class="p-4">
+            <h3 class="font-semibold">{{ cabin.name }}</h3>
+            <p class="text-sm text-slate-400 mt-1">
+              ₹{{ cabin.hourly }}/hr · ₹{{ cabin.daily }}/day · ₹{{
+                cabin.monthly
+              }}/month
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 h-fit">
+      <h3 class="text-lg font-semibold mb-4">Booking</h3>
+
+      <p *ngIf="!selectedCabin" class="text-sm text-slate-400">
+        Select a cabin
+      </p>
+
+      <div *ngIf="selectedCabin">
+        <p class="font-semibold">{{ selectedCabin.name }}</p>
+
+        <div class="flex gap-3 mt-4">
+          <button
+            *ngFor="let type of ['hourly', 'daily', 'monthly']"
+            (click)="setBookingType(type)"
+            class="px-4 py-2 rounded-lg border"
+            [ngClass]="
+              bookingType === type
+                ? 'bg-emerald-400 text-black border-emerald-400'
+                : 'border-slate-700'
+            "
+          >
+            {{ type | titlecase }}
+          </button>
+        </div>
+
+        <div class="flex justify-between font-bold text-lg mt-6">
+          <span>Total</span>
+          <span>₹{{ totalAmount }}</span>
+        </div>
+
+        <button
+          (click)="proceedToPayment()"
+          class="mt-4 w-full py-3 bg-emerald-500 text-black rounded-lg font-bold hover:bg-emerald-400 transition"
+        >
+          Proceed to Payment
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,9 +35,8 @@
         </h1>
 
         <p class="mt-6 text-sm text-gray-500 leading-relaxed">
-          Verify identity to resume. Manage your
-          digital commerce infrastructure with full system-level access and
-          control.
+          Verify identity to resume. Manage your digital commerce infrastructure
+          with full system-level access and control.
         </p>
       </div>
 
@@ -49,7 +48,7 @@
 
     <!-- RIGHT SIDE -->
     <div class="p-8 sm:p-12 flex flex-col justify-center">
-      <form class="space-y-8">
+      <form class="space-y-8" [formGroup]="loginForm" (ngSubmit)="submit()">
         <!-- Email -->
         <div>
           <label
@@ -59,6 +58,7 @@
           </label>
           <input
             type="email"
+            formControlName="email"
             placeholder="admin@startuphub.com"
             class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-md text-white placeholder-gray-600 focus:outline-none focus:border-[#00ff88] transition"
           />
@@ -66,82 +66,120 @@
 
         <!-- Password -->
         <div>
-<div class="relative">
-  <label class="block mb-2 text-xs font-mono tracking-widest text-gray-400">
-    SECURITY_CIPHER
-  </label>
+          <div class="relative">
+            <label
+              class="block mb-2 text-xs font-mono tracking-widest text-gray-400"
+            >
+              SECURITY_CIPHER
+            </label>
 
-  <input
-    [type]="showPassword ? 'text' : 'password'"
-    placeholder="********"
-    class="w-full px-4 py-3 pr-12 bg-white/5 border border-white/10
-           rounded-md text-white placeholder-gray-600
-           focus:outline-none focus:border-[#00ff88]
-           transition"
-  />
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="********"
+              class="w-full px-4 py-3 pr-12 bg-white/5 border border-white/10 rounded-md text-white placeholder-gray-600 focus:outline-none focus:border-[#00ff88] transition"
+            />
 
-  <!-- Toggle Button -->
-  <button
-    type="button"
-    (click)="togglePassword()"
-    class="absolute right-4 top-11 text-gray-400 hover:text-white transition"
-  >
-    <!-- Eye (Show) -->
-    <svg *ngIf="!showPassword"
-         xmlns="http://www.w3.org/2000/svg"
-         class="h-5 w-5"
-         fill="none" viewBox="0 0 24 24"
-         stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M2.458 12C3.732 7.943 7.523 5 12 5
+            <!-- Toggle Button -->
+            <button
+              type="button"
+              (click)="togglePassword()"
+              class="absolute right-4 top-11 text-gray-400 hover:text-white transition"
+            >
+              <!-- Eye (Show) -->
+              <svg
+                *ngIf="!showPassword"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5
                c4.478 0 8.268 2.943 9.542 7
                -1.274 4.057-5.064 7-9.542 7
-               -4.477 0-8.268-2.943-9.542-7z"/>
-    </svg>
+               -4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
 
-    <!-- Eye Off (Hide) -->
-    <svg *ngIf="showPassword"
-         xmlns="http://www.w3.org/2000/svg"
-         class="h-5 w-5"
-         fill="none" viewBox="0 0 24 24"
-         stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M13.875 18.825A10.05 10.05 0 0112 19
+              <!-- Eye Off (Hide) -->
+              <svg
+                *ngIf="showPassword"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13.875 18.825A10.05 10.05 0 0112 19
                c-4.478 0-8.268-2.943-9.543-7
                a9.956 9.956 0 012.133-3.592M6.223 6.223
                A9.955 9.955 0 0112 5
                c4.478 0 8.268 2.943 9.543 7
                a9.956 9.956 0 01-4.132 5.411M15 12
-               a3 3 0 11-6 0 3 3 0 016 0z"/>
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M3 3l18 18"/>
-    </svg>
-  </button>
-</div>
-
-
+               a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 3l18 18"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <!-- Button -->
         <button
           type="submit"
-          class="w-full flex items-center justify-between px-6 py-4 bg-white text-black font-bold tracking-wide rounded-md hover:bg-gray-200 transition transform hover:-translate-y-0.5"
+          (click)="submit()"
+          [disabled]="loading || loginForm.invalid"
+          class="w-full flex items-center justify-center gap-3 px-6 py-4 bg-white text-black font-bold tracking-wide rounded-md hover:bg-gray-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          INITIALIZE LOGIN
+          <span *ngIf="!loading">INITIALIZE LOGIN</span>
 
+          <!-- Spinner -->
           <svg
-            class="w-5 h-5"
+            *ngIf="loading"
+            class="animate-spin h-5 w-5 text-black"
+            xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
             viewBox="0 0 24 24"
           >
-            <path d="M5 12h14M12 5l7 7-7 7" />
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+            ></path>
           </svg>
         </button>
       </form>
+      <p *ngIf="error" class="text-red-400 text-sm mt-4 text-center">
+        {{ error }}
+      </p>
 
       <!-- Footer -->
       <div

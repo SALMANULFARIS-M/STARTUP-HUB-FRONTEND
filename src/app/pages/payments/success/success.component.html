@@ -1,0 +1,40 @@
+<div
+  class="min-h-screen bg-slate-950 text-slate-200 flex items-center justify-center px-6"
+>
+  <div
+    class="bg-slate-900 border border-slate-800 rounded-xl p-10 text-center max-w-md"
+  >
+    <div
+      class="w-16 h-16 bg-emerald-400 text-black rounded-full flex items-center justify-center mx-auto"
+    >
+      <svg
+        class="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="3"
+          d="M5 13l4 4L19 7"
+        />
+      </svg>
+    </div>
+
+    <h2 class="mt-6 text-xl font-semibold">Payment Successful</h2>
+    <p class="text-sm text-slate-400 mt-2">Your booking has been confirmed</p>
+    <p class="text-sm text-slate-400 mt-2">
+      Booking Type: {{ bookingData?.type }}
+    </p>
+    <p class="mt-2 font-semibold text-emerald-400">
+      Amount Paid: ₹{{ bookingData?.amount }}
+    </p>
+    <button
+      (click)="goToDashboard()"
+      class="mt-6 px-8 py-3 bg-emerald-500 text-black font-bold rounded-lg hover:bg-emerald-400 transition"
+    >
+      Go to Dashboard
+    </button>
+  </div>
+</div>
